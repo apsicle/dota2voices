@@ -1,0 +1,4 @@
+1) search heroes -> return hero name, replace _ with space. Enter hero page. Create object with all 
+voice response text as keys, values as file path to mp3. Dynamically generate sound buttons with text / matching mp3.W
+
+2) create search function to just search through all voice responses. No hero soundboard or whatever. 

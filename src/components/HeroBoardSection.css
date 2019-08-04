@@ -1,0 +1,21 @@
+.hero-board-section {
+  display: flex;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.section-label {
+  transform: rotate(-90deg) translate(0, 0);
+}
+
+.section-label__text {
+  color: grey;
+}
+
+.section-content {
+  display: flex;
+  flex-flow: wrap;
+  align-content: flex-start;
+  border-left: 1px solid grey;
+  padding-left: 10px;
+}

@@ -1,0 +1,17 @@
+.hero-portrait {
+  border: 1px solid grey;
+  width: 4.5vmax;
+}
+
+.hero-portrait > img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.hero-portrait:hover {
+  border-color: yellow;
+}
+
+.hero-portrait--selected {
+  border-color: yellow;
+}
