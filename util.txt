@@ -1,0 +1,1 @@
+gsutil setmeta -h "Cache-Control:public, max-age=36500" gs://dota-hero-portraits/205x115/*.png

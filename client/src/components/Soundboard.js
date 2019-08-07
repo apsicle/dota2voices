@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import SoundButton from 'SoundButton.js';
+import ReactLoading from 'react-loading';
+import SoundButton from './SoundButton.js';
+import './SoundBoard.css';
 
 class Soundboard extends React.Component {
   /* Displays all voice responses for a particular hero. */
@@ -11,7 +12,7 @@ class Soundboard extends React.Component {
   }
 
   componentDidMount () {
-    const { heroname } = this.props.match.params;
+    // const { heroname } = this.props.match.params;
     const { hero } = this.props.location.state;
 
     this.setState(() => ({ hero }));
@@ -22,27 +23,24 @@ class Soundboard extends React.Component {
        return response.json();
      }).then((data) => {
       console.log(data);
+      let usableMp3s = data.mp3s.filter((mp3) => {
+        return mp3.text.trim() !== ""; // some mp3s will have " " as text content, just don't use these.
+      });
       this.setState(() => {
-        return { responses: data };
+        return { mp3s: usableMp3s };
       });
     });
-    
-    // axios.get('localhost:5000/media', { url: hero.responses_url })
-    //   .then((response) => {
-    //     this.setState(() => {
-    //       return response;
-    //     })
-    //   });
   }
 
   render() {
     return (
-      <div className="sound-board">
-        {/* This is {this.state.hero.name}'s page. */}
-        {this.state.responses.map((response) => {
-          return <SoundButton mp3src={response.mp3src} text={response.text} />
+      this.state.mp3s ? (
+        <div className="sound-board">
+          {this.state.mp3s.map((resource, index) => {
+            return <SoundButton mp3src={resource.mp3src} text={resource.text} key={resource.mp3src+index}/>
         })}
-      </div> 
+        </div>
+      ) : <ReactLoading className="loading" type="bars" color="grey" height='4%' width='4%'/>
     )
   }
 }

@@ -7,7 +7,7 @@ router.get("/", function(req, res, next) {
   // scraper.getOne('Abaddon')
   scraper.getHeroResponses(req.query.destination)
     .then((response) => {
-      res.send({ response });
+      res.send({ mp3s: response });
     })
 });
 
