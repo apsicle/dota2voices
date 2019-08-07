@@ -1,23 +1,22 @@
 import parser from 'papaparse';
 
-import { strengthCSV, agilityCSV, intelligenceCSV } from './dota-hero-manifest.js';
+import manifest from './dota-heroes.js';
 
-let strength, agility, intelligence;
-strength = parser.parse(strengthCSV, {header: true});
-agility = parser.parse(agilityCSV, {header: true});
-intelligence = parser.parse(intelligenceCSV, {header: true});
+let all = parser.parse(manifest, {header: true});
+all.data = all.data.map((hero) => {
+  hero.responses_url = hero.responses_url.split(',')[0]
+  return hero;
+});
 
-function readHeroes(stat) {
-  switch (stat) {
-    case 'strength':
-      return strength.data;
-    case 'agility':
-      return agility.data;
-    case 'intelligence':
-      return intelligence.data;
-    default: 
-      return strength.data + agility.data + intelligence.data;
-  }
+function readHeroesByStat(stat) {
+  console.log(all);
+  return all.data.filter((hero) => {
+    return hero.primary_attribute === stat;
+  })
 }
 
-export default readHeroes;
+function readAll() {
+  return all.data;
+}
+
+export default { readHeroesByStat, readAll };

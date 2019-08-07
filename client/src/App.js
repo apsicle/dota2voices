@@ -1,34 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
+import SoundBoard from './components/SoundBoard';
 
-import HeroBoard from './components/HeroBoard';
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: "" };
-  }
-
-callAPI() {
-  fetch("http://localhost:5000/testAPI")
-    .then(res => res.text())
-    .then(res => this.setState({ apiResponse: res }));
-}
-
-componentWillMount() {
-  this.callAPI();
-}
-
+class App extends Component {
   render() {
-    return (
+    const App = () => (
       <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          DOTA 2 SOUNDBOARD
-        </header>
-  
-        <HeroBoard />
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route path='/:heroname' component={SoundBoard}/>
+        </Switch>
       </div>
+    )
+    return (
+      <Switch>
+        <App/>
+      </Switch>
     );
   }
 }

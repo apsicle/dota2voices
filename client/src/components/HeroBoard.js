@@ -1,6 +1,7 @@
 import React from 'react';
 import './HeroBoard.css';
-import readHeroes from '../manifests/manifestHelper.js';
+import helper from '../manifests/manifestHelper.js';
+
 
 import HeroBoardSection from './HeroBoardSection.js';
 
@@ -11,10 +12,10 @@ class HeroBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      heroes: readHeroes(),
-      agility: readHeroes('agility'),
-      strength: readHeroes('strength'),
-      intelligence: readHeroes('intelligence'),
+      heroes: helper.readAll(),
+      agility: helper.readHeroesByStat('agility'),
+      strength: helper.readHeroesByStat('strength'),
+      intelligence: helper.readHeroesByStat('intelligence'),
     }
   }
 

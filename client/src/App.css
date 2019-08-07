@@ -1,15 +1,3 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  font-size: 2vmin;
-  box-sizing: border-box;
-}
-
-#root {
-  height: 100%;
-  width: 100%;
-}
-
 .App {
   height: 100%;
   width: 100%;
@@ -17,22 +5,4 @@ html, body {
   background-size: cover;
   background-image: url('./background-smoke.jpg');
   background-attachment: fixed;
-}
-
-.App-header {
-  height: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.App-link:hover {
-  color: yellow;
 }

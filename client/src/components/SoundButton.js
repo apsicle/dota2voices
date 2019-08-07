@@ -5,8 +5,7 @@ class SoundButton extends React.Component {
     super(props);
 
     this.state = {
-      playing=false;
-      file=this.props.text;
+      playing:false,
     }
   }
 
@@ -22,3 +21,5 @@ class SoundButton extends React.Component {
     );
   }
 }
+
+export default SoundButton;

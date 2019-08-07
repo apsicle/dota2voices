@@ -3,7 +3,7 @@
   width: 4.5vmax;
 }
 
-.hero-portrait > img {
+.hero-portrait__image {
   max-width: 100%;
   object-fit: contain;
 }
