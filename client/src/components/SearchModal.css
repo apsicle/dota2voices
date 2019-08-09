@@ -1,0 +1,16 @@
+.search-modal {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  color: white;
+  margin: auto;
+  border: none;
+  text-align: center;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+  z-index: -1;
+}

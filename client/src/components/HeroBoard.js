@@ -2,7 +2,6 @@ import React from 'react';
 import './HeroBoard.css';
 import helper from '../manifests/manifestHelper.js';
 
-
 import HeroBoardSection from './HeroBoardSection.js';
 
 class HeroBoard extends React.Component {
@@ -12,10 +11,11 @@ class HeroBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      heroes: helper.readAll(),
+      heroNames: helper.readAll(),
       agility: helper.readHeroesByStat('agility'),
       strength: helper.readHeroesByStat('strength'),
       intelligence: helper.readHeroesByStat('intelligence'),
+      selected: null,
     }
   }
 
