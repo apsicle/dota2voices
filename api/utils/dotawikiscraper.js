@@ -13,16 +13,17 @@ function getAllHeroNames(elem) {
 function scrapeResponse(dom) {
   /* Given a JSDOM dom object, returns an array of objects with text & mp3src properties, e.g.:
   { text: "Chosen of Avernus", mp3src: "https://gamepedia.cursecdn.com/dota2_gamepedia/5/5f/Abad_move_05.mp3"} */
-  let all = dom.window.document.querySelectorAll('audio.ext-audiobutton');
-  let arr = Array.from(all);
-  console.log(all);
-  console.log(dom);
-
-  let out = arr.map((el, ind) => {
-    return { mp3src: el.firstChild.src, text: el.nextSibling.nextSibling.textContent.trim() };
-  });
-
-  return out;
+  try {
+    let all = dom.window.document.querySelectorAll('audio.ext-audiobutton');
+    let arr = Array.from(all);
+      let out = arr.map((el, ind) => {
+      return { mp3src: el.firstChild.src, text: el.nextSibling.nextSibling.textContent.trim() };
+    });
+  
+    return out;
+  } catch(error) {
+    return error;
+  }
 }
 
 function getHeroResponses(url) {

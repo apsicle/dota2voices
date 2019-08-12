@@ -12,7 +12,6 @@ class SearchModal extends React.Component {
   }
 
   componentDidMount() {
-
     window.addEventListener('keydown', this.handleKeyPress)
   }
 
@@ -36,8 +35,10 @@ class SearchModal extends React.Component {
           text: state.text + (charIsValid(char) ? char : ''),
           hide: false,
         }
+      }, () => {
+        this.props.handleUpdate(this.state.text);
       });
-
+      
       clearTimeout(timeout);
 
       // Reset search text and hide modal after 1.5s.

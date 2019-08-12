@@ -1,0 +1,25 @@
+.contact-form fieldset {
+  position: relative;
+  height: 50vh;
+  width: 50vw;
+  margin: auto;
+  top: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  text-align: left;   
+}
+
+label {
+  float: left;
+}
+
+input, textarea {
+  margin-bottom: .5rem;
+}
+
+textarea {
+  display: block;
+  columns: 50vw;
+}

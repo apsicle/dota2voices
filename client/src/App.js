@@ -3,15 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import SoundBoard from './components/SoundBoard';
-import SearchModal from './components/SearchModal';
-
-
+import Contact from './components/Contact';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    
-
   }
  
   render() {
@@ -19,9 +15,9 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' component={Home}/>
+          <Route path='/contact' component={Contact}/>
           <Route path='/:heroname' component={SoundBoard}/>
         </Switch>
-        <SearchModal />
       </div>
     )
     return (

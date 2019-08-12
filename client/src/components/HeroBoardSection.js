@@ -12,7 +12,7 @@ class HeroBoardSection extends React.Component {
         </div>
         <div className="section-content">
           {this.props.heroes.map((hero) => {
-            return <HeroPortrait hero={hero} key={hero.name} />
+            return <HeroPortrait searchText={this.props.searchText} hero={hero} key={hero.name} />
           })}
         </div>
       </div>

@@ -6,14 +6,21 @@ class HeroPortrait extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selected: false,
-    }
+    this.formattedName = this.props.hero.name.replace('_', ' ');
   }
 
+  isSelected() {
+    if (this.props.searchText === "") {
+      return false;
+    }
+    
+    let re = new RegExp(`^${this.props.searchText}.*$`); // match if name starts with search string
+    return (re.test(this.formattedName))
+  }
+  
   render() {
     return (
-      <Link className="hero-portrait" to={{
+      <Link className={this.isSelected() ? "hero-portrait hero-portrait--selected" : "hero-portrait"} to={{
         pathname: `/${this.props.hero.name}`,
         state: {
           hero: this.props.hero
