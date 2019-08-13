@@ -6,21 +6,30 @@ class HeroPortrait extends React.Component {
   constructor(props) {
     super(props);
 
+    this.selfRef = React.createRef();
     this.formattedName = this.props.hero.name.replace('_', ' ');
   }
 
-  isSelected() {
+  classState() {
     if (this.props.searchText === "") {
-      return false;
+      return "hero-portrait";
+    } else {
+      let re = new RegExp(`^${this.props.searchText}.*$`); // match if name starts with search string
+      if (re.test(this.formattedName)) {
+        if (this.selfRef.current) {
+          console.log(this.selfRef);
+          this.selfRef.current.focus();
+        }
+        return "hero-portrait hero-portrait--selected";
+      } else {
+        return "hero-portrait hero-portrait--unselected";
+      }
     }
-    
-    let re = new RegExp(`^${this.props.searchText}.*$`); // match if name starts with search string
-    return (re.test(this.formattedName))
   }
-  
+
   render() {
     return (
-      <Link className={this.isSelected() ? "hero-portrait hero-portrait--selected" : "hero-portrait"} to={{
+      <Link className={this.classState()} innerRef={this.selfRef} to={{
         pathname: `/${this.props.hero.name}`,
         state: {
           hero: this.props.hero

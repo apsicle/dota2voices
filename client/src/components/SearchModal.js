@@ -12,12 +12,16 @@ class SearchModal extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyPress)
+    window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress)
+    window.removeEventListener('keydown', this.handleKeyDown)
     
+  }
+
+  handleKeyDown = (event) => {
+    this.searchInputDebounced(event);
   }
 
   searchInputDebounced = (() => {
@@ -28,17 +32,45 @@ class SearchModal extends React.Component {
       return validCharset.test(char);
     }
 
-    return (char) => {
-      // Update search text
-      this.setState((state) => {
-        return {
-          text: state.text + (charIsValid(char) ? char : ''),
-          hide: false,
-        }
-      }, () => {
-        this.props.handleUpdate(this.state.text);
-      });
-      
+    return (event) => {
+      /* Event handler */
+      let char = event.key;
+      console.log(char);
+      if (event.keyCode === 8) {
+        // Delete the last char if backspace was pressed.
+        console.log(this.state.text.length);
+        this.setState((state) => {
+          return {
+            text: state.text.slice(0, state.text.length - 1),
+            hide: false,
+          }
+        }, () => {
+          this.props.handleUpdate(this.state.text);
+        });
+      } else if (event.keyCode === 27) {
+        // Clear all search text, and hide modal.
+        this.setState((state) => {
+          return {
+            text: '',
+            hide: true,
+          }
+        }, () => {
+          this.props.handleUpdate(this.state.text);
+        });
+
+        clearTimeout(timeout);
+        return;
+      } else {
+        this.setState((state) => {
+          return {
+            text: state.text + (charIsValid(char) ? char : ''),
+            hide: false,
+          }
+        }, () => {
+          this.props.handleUpdate(this.state.text);
+        });
+      }
+
       clearTimeout(timeout);
 
       // Reset search text and hide modal after 1.5s.
@@ -51,25 +83,9 @@ class SearchModal extends React.Component {
             hide: true
           }
         })
-      }, 1500)
+      }, 1000)
     } 
   })();
-
-  handleKeyPress = (event) => {
-
-    // event.preventDefault();
-    let str = event.key;
-    this.searchInputDebounced(str);
-    // this.setState((state) => {
-    //   return {
-    //     searchInput: state.searchInput + str
-    //   }
-    // })
-  }
-
-  handleChange(event) {
-    console.log('change', event)
-  }
 
   render() {
     return (

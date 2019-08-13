@@ -1,1 +1,2 @@
-gsutil setmeta -h "Cache-Control:public, max-age=36500" gs://dota-hero-portraits/205x115/*.png
+gsutil -m setmeta -h "Cache-Control:public, max-age=36000" gs://dota-hero-portraits/205x115/*.png
+gsutil -m acl ch -u AllUsers:R gs://dota-hero-portraits/205x115/*.png
