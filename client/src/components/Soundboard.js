@@ -9,20 +9,18 @@ class Soundboard extends React.Component {
     super(props);
 
     this.img = new Image();
+    this.fullPortraitPath = this.props.location.state.hero.portrait_path.replace('_lg', '_full');
+    console.log(this.props.location.state);
     this.state = {};
-  }
-
-  componentWillMount() {
-
   }
 
   componentDidMount() {
     // const { heroname } = this.props.match.params;
     const { hero } = this.props.location.state;
-    this.img.src = `https://storage.cloud.google.com/dota-hero-portraits/256x144/${hero.name}_full.png`; // force preload of image
+    this.img.src = `https://storage.cloud.google.com/dota-hero-portraits/256x144/${this.fullPortraitPath}`; // force preload of image
     this.setState(() => ({ hero }));
 
-    fetch(`http://localhost:5000/media?destination=${hero.responses_url}`, {
+    fetch(`${process.env.BASE_URL || 'http://localhost:5000'}/media?destination=${hero.responses_url}`, {
       method: 'GET',
      }).then((response) => {
        return response.json();
@@ -42,7 +40,7 @@ class Soundboard extends React.Component {
       this.state.mp3s ? (
         <div className="sound-board">
           <div className="sound-board__header">
-            <img className="hero-portrait__image" src={`https://storage.cloud.google.com/dota-hero-portraits/256x144/${this.state.hero.name}_full.png`} alt=""></img>
+            <img className="hero-portrait__image" src={`https://storage.cloud.google.com/dota-hero-portraits/256x144/${this.fullPortraitPath}`} alt=""></img>
           </div>
           <div className="sound-board__content">
             {this.state.mp3s.map((resource, index) => {

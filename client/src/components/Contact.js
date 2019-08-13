@@ -13,7 +13,7 @@ class Contact extends React.Component {
 
   render() {
     return (
-      <form className="contact-form" method="POST" action="http://localhost:5000/contact">
+      <form className="contact-form" method="POST" action={`${process.env.BASE_URL || 'http://localhost:5000'}/contact`}>
         <fieldset>
           <legend>Contact me about shit</legend>
           <label htmlFor="name">Name: </label>

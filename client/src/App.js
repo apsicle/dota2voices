@@ -6,10 +6,6 @@ import SoundBoard from './components/SoundBoard';
 import Contact from './components/Contact';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
- 
   render() {
     const App = () => (
       <div className="App">

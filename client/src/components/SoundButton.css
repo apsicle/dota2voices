@@ -10,11 +10,17 @@
   margin: 25px;
   border: 1px solid grey;
   padding: 1em .5em;
+  border-radius: 4px;
 }
 
 .sound-button:hover {
   /* filter: brightness(125%); */
   box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
+}
+
+.sound-button:focus {
+  outline: 0;
+  box-shadow: none;
 }
 
 ::-webkit-scrollbar {

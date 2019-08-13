@@ -9,16 +9,6 @@ class Home extends React.Component {
     this.state = { apiResponse: "" };
   }
 
-  callAPI() {
-    fetch("http://localhost:5000/users")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
-
-  componentWillMount() {
-    this.callAPI();
-  }
-
   render() {
     return (
       <div className="Home">
