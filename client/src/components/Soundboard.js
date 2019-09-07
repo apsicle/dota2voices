@@ -20,7 +20,7 @@ class Soundboard extends React.Component {
     this.img.src = `https://storage.cloud.google.com/dota-hero-portraits/256x144/${this.fullPortraitPath}`; // force preload of image
     this.setState(() => ({ hero }));
 
-    fetch(`${process.env.BASE_URL || 'http://localhost:5000'}/media?destination=${hero.responses_url}`, {
+    fetch(`${'https://dota-soundboard.herokuapp.com'}/media?destination=${hero.responses_url}`, {
       method: 'GET',
      }).then((response) => {
        return response.json();
