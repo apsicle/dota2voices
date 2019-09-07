@@ -16,12 +16,12 @@ function scrapeResponse(dom) {
   try {
     let all = dom.window.document.querySelectorAll('audio.ext-audiobutton');
     let arr = Array.from(all);
-      let out = arr.map((el, ind) => {
-      return { mp3src: el.firstChild.src, text: el.nextSibling.nextSibling.textContent.trim() };
+    let out = arr.map((el, ind) => {
+      return { mp3src: el.firstChild.src, text: el.parentNode.nextSibling.textContent.trim() };
     });
-  
     return out;
   } catch(error) {
+    console.log('Error scraping page');
     return error;
   }
 }
